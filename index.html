@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Collection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        header, footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        header h1, footer p {
+            margin: 0;
+        }
+
+        section {
+            padding: 20px;
+        }
+
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .filter-button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            background-color: #333;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .filter-button.active {
+            background-color: #007bff;
+        }
+
+        .recipe-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .recipe-card {
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .recipe-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .recipe-description {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Recipe Collection</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#recipes">Recipes</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <h2>Welcome to our Recipe Collection!</h2>
+        <p>Explore delicious recipes and find inspiration for your next meal.</p>
+    </section>
+
+    <section id="recipes">
+        <h2>Recipes</h2>
+        <div class="filter-container">
+            <button class="filter-button" data-category="all">All</button>
+            <button class="filter-button" data-category="breakfast">Breakfast</button>
+            <button class="filter-button" data-category="lunch">Lunch</button>
+            <button class="filter-button" data-category="dinner">Dinner</button>
+            <button class="filter-button" data-category="dessert">Dessert</button>
+        </div>
+        <div class="recipe-list">
+            <div class="recipe-card" data-category="breakfast">
+                <h3 class="recipe-title">Avocado Toast</h3>
+                <p class="recipe-description">A simple and healthy breakfast option.</p>
+            </div>
+            <div class="recipe-card" data-category="lunch">
+                <h3 class="recipe-title">Grilled Chicken Salad</h3>
+                <p class="recipe-description">A refreshing and nutritious lunch choice.</p>
+            </div>
+            <div class="recipe-card" data-category="dinner">
+                <h3 class="recipe-title">Spaghetti Bolognese</h3>
+                <p class="recipe-description">A classic Italian dish for dinner.</p>
+            </div>
+            <div class="recipe-card" data-category="dessert">
+                <h3 class="recipe-title">Chocolate Chip Cookies</h3>
+                <p class="recipe-description">A sweet treat for any occasion.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Have a question or suggestion? Get in touch with us!</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2022 Recipe Collection. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const recipeCards = document.querySelectorAll('.recipe-card');
+        const filterButtons = document.querySelectorAll('.filter-button');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const category = button.dataset.category;
+                recipeCards.forEach(card => {
+                    if (card.dataset.category === category || category === 'all') {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+
+                filterButtons.forEach(button => {
+                    button.classList.remove('active');
+                });
+
+                button.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
